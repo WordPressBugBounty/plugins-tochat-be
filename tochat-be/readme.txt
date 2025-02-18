@@ -1,9 +1,9 @@
 === TOCHAT.BE ===
 Tags: whatsapp, whatsapp business, whatsapp support chat, chat, click to chat
 Requires at least: 5.0
-Tested up to: 6.6.1
+Tested up to: 6.7.2
 Requires PHP: 5.6
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,10 @@ This plugin offers free multiagent support and logs all the messages so you can 
 9. Ready
 
 == Changelog ==
+
+= 1.3.4 =
+* Fix: Custom order column for WooCommerce HPOS stores.
+* Improve: Add admin option field descriptions.
 
 = 1.3.3 =
 * Fix: Admin notice dismiss button.

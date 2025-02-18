@@ -11,7 +11,7 @@
  * Plugin Name: TOCHAT.BE
  * Plugin URI:  https://tochat.be/premium/
  * Description: Add a WhatsApp click to chat button on your website for free. WhatsApp is the most use messenger app in the world. WordPress is the best platform to present your business to the world. Make your customers connect with you with a click.It is very easy and simple. Just install this free plugin and you can connect your WhatsApp account with your WordPress website and communicate with your users.
- * Version:     1.3.3
+ * Version:     1.3.4
  * Author:      TOCHAT.BE
  * Author URI:  https://tochat.be
  * Text Domain: tochat-be
@@ -37,7 +37,7 @@ if ( ! defined( 'TOCHATBE_PLUGIN_URL' ) ) {
 }
 
 if ( ! defined( 'TOCHATBE_PLUGIN_VER' ) ) {
-	define( 'TOCHATBE_PLUGIN_VER', '1.3.3' );
+	define( 'TOCHATBE_PLUGIN_VER', '1.3.4' );
 }
 
 /**

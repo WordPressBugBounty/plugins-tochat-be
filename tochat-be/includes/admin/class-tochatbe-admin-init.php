@@ -40,6 +40,7 @@ class TOCHATBE_Admin_Init {
 		|| 'tochat-be_page_to-chat-be-whatsapp_click-log' === $hook
 		|| 'tochatbe_agent' === get_post_type()
 		|| 'shop_order' === get_post_type()
+		|| 'woocommerce_page_wc-orders' === $hook
 		|| 'index.php' === $hook ) {
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_script( 'wp-color-picker' );

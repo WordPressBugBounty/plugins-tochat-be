@@ -29,6 +29,8 @@ class TOCHATBE_Init {
 		require_once TOCHATBE_PLUGIN_PATH . 'includes/tochatbe-agent-functions.php';
 
 		if ( is_admin() ) {
+			require_once TOCHATBE_PLUGIN_PATH . 'includes/admin/tochatbe-admin-functions.php';
+			
 			require_once TOCHATBE_PLUGIN_PATH . 'includes/admin/class-tochatbe-admin-init.php';
 			require_once TOCHATBE_PLUGIN_PATH . 'includes/admin/class-tochatbe-admin-agent-post.php';
 			require_once TOCHATBE_PLUGIN_PATH . 'includes/admin/class-tochatbe-admin-log-table.php';

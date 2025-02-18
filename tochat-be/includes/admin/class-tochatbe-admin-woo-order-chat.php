@@ -30,7 +30,10 @@ class TOCHATBE_Admin_Woo_Order_Chat {
 
 		// Order list button.
 		add_filter( 'manage_edit-shop_order_columns', array( $this, 'order_column' ) );
-		add_action( 'manage_shop_order_posts_custom_column', array( $this, 'add_order_column_content' ) );
+		add_action( 'manage_shop_order_posts_custom_column', array( $this, 'add_order_column_content' ), 20, 2 );
+		add_filter( 'manage_woocommerce_page_wc-orders_columns', array( $this, 'order_column' ) ); // HPOS.
+		add_action( 'manage_woocommerce_page_wc-orders_custom_column', array( $this, 'add_order_column_content' ), 20, 2 ); // HPOS.
+
 
 		add_action( 'wp_ajax_tochatbe_save_order_message', array( $this, 'save_order_message' ) );
 		add_action( 'wp_ajax_nopriv_tochatbe_save_order_message', array( $this, 'save_order_message' ) );
@@ -99,7 +102,7 @@ class TOCHATBE_Admin_Woo_Order_Chat {
 	 * @return void
 	 */
 	public function chat_popup() {
-		if ( 'shop_order' != get_post_type() ) {
+		if ( 'shop_order' != get_post_type() && 'woocommerce_page_wc-orders' !== tochatbe_get_current_screen_id() ) {
 			return;
 		}
 		?>
@@ -180,7 +183,7 @@ class TOCHATBE_Admin_Woo_Order_Chat {
 	 * @return void
 	 */
 	public function dynamic_style() {
-		if ( 'shop_order' != get_post_type() ) {
+		if ( 'shop_order' != get_post_type() && 'woocommerce_page_wc-orders' !== tochatbe_get_current_screen_id() ) {
 			return;
 		}
 		?>
@@ -293,13 +296,13 @@ class TOCHATBE_Admin_Woo_Order_Chat {
 	 * Get phone number.
 	 *
 	 * @param string $column Column name.
+	 * @param int    $order_id Order ID.
+	 * 
 	 * @return void
 	 */
-	public function add_order_column_content( $column ) {
-		global $post;
-
+	public function add_order_column_content( $column, $order_id ) {
 		if ( 'tochatbe_contact' === $column ) {
-			$order = wc_get_order( $post->ID );
+			$order = wc_get_order( $order_id );
 
 			$order_message = '';
 			$order_status  = $order->get_status();
@@ -481,13 +484,10 @@ class TOCHATBE_Admin_Woo_Order_Chat {
 			<p>Send a thank you note or reminder.</p>
 
 			<?php
-				$args = array(
-					'post_type'      => 'shop_order',
-					'posts_per_page' => '10',
-					'post_status'    => 'any',
-				);
-
-				$orders = get_posts( $args );
+				$orders = wc_get_orders( array(
+					'limit'  => 10,
+					'status' => 'any',
+				) );
 				?>
 
 			<?php if ( $orders ) : ?>
@@ -501,7 +501,6 @@ class TOCHATBE_Admin_Woo_Order_Chat {
 					</thead>
 					<tbody>
 					<?php foreach ( $orders as $order ) : ?>
-						<?php $order = wc_get_order( $order->ID ); ?>
 						<?php
 							$order_message = '';
 							$order_status  = $order->get_status();
